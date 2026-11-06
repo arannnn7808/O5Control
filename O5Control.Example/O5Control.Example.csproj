@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <AssemblyName>O5Control.Example</AssemblyName>
+    <RootNamespace>O5Control.Example</RootNamespace>
+    <Version>1.0.0</Version>
+    <IsPackable>false</IsPackable>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Northwood.LabAPI" Version="1.1.7" PrivateAssets="all" ExcludeAssets="runtime" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\O5Control\O5Control.csproj" Private="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp" HintPath="$(SLReferences)\Assembly-CSharp-Publicized.dll" Private="false" />
+    <Reference Include="CommandSystem.Core" HintPath="$(SLReferences)\CommandSystem.Core.dll" Private="false" />
+    <Reference Include="Mirror" HintPath="$(SLReferences)\Mirror.dll" Private="false" />
+    <Reference Include="UnityEngine.CoreModule" HintPath="$(SLReferences)\UnityEngine.CoreModule.dll" Private="false" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,11 @@
+bin/
+obj/
+artifacts/
+.idea/
+.vs/
+*.user
+*.suo
+*.DotSettings.user
+*.swp
+.DS_Store
+nuget.config

@@ -1,0 +1,18 @@
+<Project>
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <Deterministic>true</Deterministic>
+    <Authors>O5 Control</Authors>
+    <Company>O5 Control</Company>
+    <Product>O5 Control</Product>
+    <Copyright>Copyright © O5 Control</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <SLReferences Condition="'$(SLReferences)' == ''">$(SL_REFERENCES)</SLReferences>
+    <SLReferences Condition="'$(SLReferences)' == ''">$(USERPROFILE)\Documents\SCPSLDLL</SLReferences>
+  </PropertyGroup>
+</Project>
