@@ -33,7 +33,7 @@ internal sealed class SetupService
 
     public static bool IsValidCode(string code) => CodePattern.IsMatch(code);
 
-    public async Task<SetupResult> RedeemAsync(string code)
+    public async Task<SetupResult> RedeemAsync(string code, string? language)
     {
         var body = JsonSerializer.Serialize(new
         {
@@ -67,7 +67,7 @@ internal sealed class SetupService
             if (redeemed is null || string.IsNullOrEmpty(redeemed.ServerId) || string.IsNullOrEmpty(redeemed.Secret))
                 return SetupResult.Fail("O5 Control returned an incomplete answer.");
 
-            _store.Save(new Credential { ServerId = redeemed.ServerId, Instance = redeemed.Instance.Slug, Secret = redeemed.Secret });
+            _store.Save(new Credential { ServerId = redeemed.ServerId, Instance = redeemed.Instance.Slug, Secret = redeemed.Secret, Language = language });
             return SetupResult.Ok(redeemed.Instance, redeemed.ServerName);
         }
     }

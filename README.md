@@ -27,24 +27,23 @@ LabAPI plugin that connects your SCP: Secret Laboratory servers to [O5 Control](
 3. In the panel open **Servers → Connect a server** and run the command it gives you in the server console:
 
 ```
-o5 setup O5-XXXX-XXXX
+o5 setup O5-XXXX-XXXX en
 ```
 
 ## Commands
 
 | Command | Description |
 | --- | --- |
-| `o5 setup <code>` | Links the server with a code from the panel. |
+| `o5 setup <code> [en\|es\|fr\|pl]` | Links the server with a code from the panel. Without a language it follows the instance language. |
 | `o5 status` | Shows the connection state. |
 | `o5 reconnect` | Reopens the connection to the panel. |
 | `o5 unlink confirm` | Removes the server's credential. |
-| `o5 lang <en\|es\|fr\|pl>` | Changes the language of the messages players see. |
 
 `o5control` works as an alias. From Remote Admin every command except `status` needs the `ServerConsoleCommands` permission.
 
 ## Translations
 
-Messages shown to players (ban screen, kicks, warnings, mutes) live in `translations.yml`, next to `config.yml`. Run `o5 lang es` to switch every text to Spanish at once, or edit the file to write your own. Available: English, Español, Français and Polski.
+Messages shown to players (ban screen, kicks, warnings, mutes) live in `translations.yml`, next to `config.yml`. Their language follows the instance language set in the panel (or the one given to `o5 setup`); when it changes, the file is rewritten with that language's texts. You can also edit the file to write your own. Available: English, Español, Français and Polski.
 
 ## For developers
 

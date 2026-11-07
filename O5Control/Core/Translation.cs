@@ -14,7 +14,7 @@ public sealed class Translation
         ["pl"] = "Polski",
     };
 
-    [Description("Language of these texts. Change it with: o5 lang <en|es|fr|pl>. Placeholders: {reason}, {expires}, {issuer}.")]
+    [Description("Language of these texts. It follows the instance language set in the panel, unless one was given to o5 setup. Changing it rewrites this file. Placeholders: {reason}, {expires}, {issuer}.")]
     public string Language { get; set; } = "en";
 
     public string BanScreen { get; set; } = "You are banned from this network.\nReason: {reason}\nExpires: {expires}";

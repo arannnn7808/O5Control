@@ -38,6 +38,8 @@ internal sealed class InstanceInfo
     public string Slug { get; set; } = string.Empty;
 
     public string Name { get; set; } = string.Empty;
+
+    public string Language { get; set; } = string.Empty;
 }
 
 internal sealed class ServerSettings

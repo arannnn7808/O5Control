@@ -39,4 +39,6 @@ internal static class Ops
     public const string UpdateState = "update.state";
 
     public const string SettingsUpdate = "settings.update";
+
+    public const string InstanceUpdate = "instance.update";
 }

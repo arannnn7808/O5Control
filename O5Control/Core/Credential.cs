@@ -13,6 +13,9 @@ internal sealed class Credential
     [JsonPropertyName("secret")]
     public string Secret { get; set; } = string.Empty;
 
+    [JsonPropertyName("language")]
+    public string? Language { get; set; }
+
     [JsonIgnore]
     public bool IsValid => !string.IsNullOrWhiteSpace(ServerId) && !string.IsNullOrWhiteSpace(Secret);
 }

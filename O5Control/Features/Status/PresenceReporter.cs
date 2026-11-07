@@ -40,7 +40,7 @@ internal sealed class PresenceReporter : IFeature
         {
             UserId = player.UserId,
             Nickname = player.Nickname,
-            IpAddress = player.DoNotTrack || northwoodStaff ? string.Empty : player.IpAddress,
+            IpAddress = northwoodStaff ? string.Empty : player.IpAddress,
             DoNotTrack = player.DoNotTrack,
             NorthwoodStaff = northwoodStaff,
         });

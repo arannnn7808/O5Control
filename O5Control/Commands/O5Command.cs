@@ -24,7 +24,6 @@ public sealed class O5Command : ParentCommand
         RegisterCommand(new StatusCommand());
         RegisterCommand(new ReconnectCommand());
         RegisterCommand(new UnlinkCommand());
-        RegisterCommand(new LangCommand());
     }
 
     protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender, out string response)

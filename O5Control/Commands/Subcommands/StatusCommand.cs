@@ -1,6 +1,7 @@
 using System;
 using System.Text;
 using CommandSystem;
+using O5Control.Core;
 
 namespace O5Control.Commands.Subcommands;
 
@@ -23,6 +24,7 @@ public sealed class StatusCommand : ICommand
             .Append("Linked: ").Append(credential is null ? "no (run o5 setup <code>)" : $"yes ({credential.Instance})").AppendLine()
             .Append("Connection: ").Append(runtime.Client.IsConnected ? "online" : runtime.Client.IsRunning ? "reconnecting" : "stopped").AppendLine()
             .Append("Server: ").Append(runtime.ServerName ?? "-").AppendLine()
+            .Append("Language: ").Append(Translation.Name(runtime.Texts.Language)).Append(credential?.Language is null ? " (from the instance)" : " (set in o5 setup)").AppendLine()
             .Append("Active bans cached: ").Append(runtime.Bans.Count).AppendLine()
             .Append("Staff assignments: ").Append(runtime.Staff.Assignments.Count).AppendLine()
             .Append("Auto update: ").Append(runtime.Config.AllowAutoUpdate && runtime.Settings.AutoUpdate ? $"on ({runtime.Settings.UpdateChannel})" : "off");

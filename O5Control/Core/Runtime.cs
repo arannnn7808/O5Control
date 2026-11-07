@@ -143,6 +143,7 @@ internal sealed class Runtime : IDisposable
     {
         Router.On<WelcomeMessage>(Ops.Welcome, (welcome, _) => OnWelcome(welcome));
         Router.On<ServerSettings>(Ops.SettingsUpdate, (settings, _) => Settings = settings);
+        Router.On<InstanceInfo>(Ops.InstanceUpdate, (instance, _) => OnInstanceUpdate(instance));
         Router.On<BansSnapshotMessage>(Ops.BansSnapshot, (snapshot, _) => Bans.Replace(snapshot.Bans));
         Router.On<Sanction>(Ops.SanctionApplied, (sanction, _) => Sanctions.Apply(sanction));
         Router.On<SanctionRevokedMessage>(Ops.SanctionRevoked, (revoked, _) => Sanctions.Revoke(revoked));
@@ -161,9 +162,26 @@ internal sealed class Runtime : IDisposable
         Bans.Replace(welcome.Bans);
         Mutes.Replace(welcome.Mutes);
         Staff.ReplaceAll(welcome.Staff);
+        ApplyLanguage(welcome.Instance.Language);
 
         Log.Info($"Linked to {welcome.Instance.Name} ({welcome.Instance.Slug}) as '{welcome.ServerName}'. {Bans.Count} active bans, {Mutes.Count} mutes, {welcome.Staff.Count} staff.");
         Status.SendNow();
+    }
+
+    private void OnInstanceUpdate(InstanceInfo instance)
+    {
+        Instance = instance;
+        ApplyLanguage(instance.Language);
+    }
+
+    public void ApplyLanguage(string? instanceLanguage)
+    {
+        var wanted = Credentials.Current?.Language ?? instanceLanguage;
+        if (!Translation.TryNormalize(wanted, out var language) || language == Texts.Language)
+            return;
+
+        _plugin.SetLanguage(language);
+        Log.Info($"Language set to {Translation.Name(language)}. translations.yml has been rewritten with the {Translation.Name(language)} texts.");
     }
 
     private void OnConnected()
