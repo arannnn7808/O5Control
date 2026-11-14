@@ -6,6 +6,7 @@ using LabApi.Loader;
 using O5Control.API;
 using O5Control.API.Models;
 using O5Control.Features.Activity;
+using O5Control.Features.Configs;
 using O5Control.Features.Moderation;
 using O5Control.Features.Remote;
 using O5Control.Features.Setup;
@@ -41,6 +42,7 @@ internal sealed class Runtime : IDisposable
         Recorder = new ActivityRecorder(Activity, () => Config.Activity);
         Status = new StatusReporter(Client, () => Config);
         Remote = new RemoteControlService(Client);
+        Configs = new ConfigFileService(Client, Staff, Credentials.FilePath);
         Updater = new AutoUpdater(Client, MainThread, () => Config, () => Settings.AutoUpdate, plugin.FilePath, plugin.Version);
         Setup = new SetupService(() => Endpoints.Api, Credentials, Version);
 
@@ -85,6 +87,8 @@ internal sealed class Runtime : IDisposable
 
     public RemoteControlService Remote { get; }
 
+    public ConfigFileService Configs { get; }
+
     public AutoUpdater Updater { get; }
 
     public SetupService Setup { get; }
@@ -102,6 +106,7 @@ internal sealed class Runtime : IDisposable
 
         BindProtocol();
         Remote.Bind(Router);
+        Configs.Bind(Router);
         Updater.Bind(Router);
 
         foreach (var feature in _features)

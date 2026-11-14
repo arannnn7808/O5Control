@@ -17,6 +17,8 @@ internal sealed class CredentialStore
         _path = Path.Combine(directory, FileName);
     }
 
+    public string FilePath => _path;
+
     public Credential? Current { get; private set; }
 
     public Credential? Load()

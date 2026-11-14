@@ -68,6 +68,15 @@ internal sealed class StaffSyncService : IFeature
         O5Events.OnStaffUnassigned(userId);
     }
 
+    public void Reapply()
+    {
+        foreach (var assignment in _assignments.Values)
+        {
+            if (Player.TryGet(assignment.UserId, out var player))
+                Apply(player, assignment);
+        }
+    }
+
     private void OnJoined(PlayerJoinedEventArgs ev)
     {
         if (_assignments.TryGetValue(ev.Player.UserId, out var assignment))

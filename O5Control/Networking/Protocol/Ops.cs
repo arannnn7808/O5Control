@@ -35,6 +35,10 @@ internal static class Ops
     public const string Broadcast = "server.broadcast";
     public const string RoundRestart = "round.restart";
 
+    public const string ConfigList = "config.list";
+    public const string ConfigRead = "config.read";
+    public const string ConfigWrite = "config.write";
+
     public const string UpdateAvailable = "update.available";
     public const string UpdateState = "update.state";
 
